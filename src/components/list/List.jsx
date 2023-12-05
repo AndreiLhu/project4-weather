@@ -1,3 +1,4 @@
+import './List.css';
 export default function List({ activities, isGoodWeather, onDeleteActivity }) {
   return (
     <>
@@ -22,7 +23,7 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
               type="button"
               className="list__button"
             >
-              ❌
+              x
             </button>
           </li>
         ))}

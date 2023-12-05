@@ -1,3 +1,4 @@
+import './Form.css';
 export const Form = ({ onAddActivity }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,6 +21,7 @@ export const Form = ({ onAddActivity }) => {
         <input
           type="text"
           id="inputName"
+          maxLength={60}
           name="inputName"
           placeholder="enter your activity"
           required

@@ -35,7 +35,7 @@ function App() {
       }
     }
 
-    const intervalID = setInterval(fetchData, 1000);
+    const intervalID = setInterval(fetchData, 5000);
     return () => {
       clearInterval(intervalID);
     };
@@ -57,8 +57,8 @@ function App() {
   }
 
   return (
-    <>
-      <h1>main app</h1>
+    <div className="weather-container">
+      <h1>Weather App</h1>
       <Form onAddActivity={handleAddActivity} />
       <form>
         <select value={continent} onChange={handleContinentChange}>
@@ -76,7 +76,7 @@ function App() {
         }
         onDeleteActivity={handleDeleteActivity}
       />
-    </>
+    </div>
   );
 }
 

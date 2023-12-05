@@ -1,6 +1,7 @@
+import './Weather.css';
 export default function Weather({ weather }) {
   return (
-    <div>
+    <div className="weather-details">
       {!weather && <h2>weather is loading...</h2>}
       {weather && (
         <>
