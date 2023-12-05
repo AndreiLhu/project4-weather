@@ -33,13 +33,14 @@ function App() {
       clearInterval(intervalID);
     };
   }, []);
-  // const isGoodWeather = weather?.isGoodWeather;
-  // const goodWeatherActivities = activities.filter(
-  //   (activity) => activity.isForGoodWeather === true
-  // );
-  // const badWeatherActivities = activities.filter(
-  //   (activity) => activity.isForGoodWeather === false
-  // );
+  const isGoodWeather = weather?.isGoodWeather;
+
+  const goodWeatherActivities = activities.filter(
+    (activity) => activity.inputGoodWeather === true
+  );
+  const badWeatherActivities = activities.filter(
+    (activity) => activity.inputGoodWeather === false
+  );
 
   function handleDeleteActivity(id) {
     setActivities(activities.filter((activity) => activity.id !== id));
@@ -48,19 +49,18 @@ function App() {
     setActivities([...activities, { id: uid(), ...newActivity }]);
   }
 
-  // onAddActivity, activities, isGoodWeather, onDeleteActivity ;
   return (
     <>
       <h1>main app</h1>
       <Form onAddActivity={handleAddActivity} />
       <Weather weather={weather} />
-      {/* <List
+      <List
         isGoodWeather={isGoodWeather}
         activities={
           isGoodWeather ? goodWeatherActivities : badWeatherActivities
         }
         onDeleteActivity={handleDeleteActivity}
-      /> */}
+      />
     </>
   );
 }
