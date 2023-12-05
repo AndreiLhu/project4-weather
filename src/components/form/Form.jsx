@@ -1,28 +1,15 @@
-import { useState } from "react";
 export const Form = ({ onAddActivity }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    isForGoodWeather: false,
-  });
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  const handleNameChange = (e) => {
-    setFormData({ ...formData, name: e.target.value });
-  };
-  const handleWeatherChange = (e) => {
-    setFormData({ ...formData, isForGoodWeather: e.target.checked });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("target", e.target);
-    console.log("form", formData);
-
-    // onAddActivity({ formData });
-    const form = e.target;
-    let name = form.elements.inputName.value;
-    console.log("name", name);
-    form.reset();
-    name.reset();
-    form.elements.inputName.focus();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    data.inputGoodWeather = event.target.inputGoodWeather.checked === true;
+    onAddActivity(data);
+    console.log('form', formData);
+    console.log('data', data);
+    event.target.reset();
+    event.target.inputName.focus();
   };
 
   return (
@@ -35,18 +22,15 @@ export const Form = ({ onAddActivity }) => {
           id="inputName"
           name="inputName"
           placeholder="enter your activity"
-          value={formData.name}
-          onChange={handleNameChange}
-          // ref={inputFocus}
+          required
         ></input>
         <label htmlFor="inputGoodWeather">Good-weather activity:</label>
         <input
           type="checkbox"
           id="inputGoodWeather"
-          onChange={handleWeatherChange}
-          checked={formData.isForGoodWeather}
+          name="inputGoodWeather"
         ></input>
-        <input type="submit" value="add Activity"></input>
+        <button type="submit">add Activity</button>
       </form>
     </>
   );
