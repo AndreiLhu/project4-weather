@@ -1,30 +1,37 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import { Form } from './components/form/Form';
-import Weather from './components/weather/Weather';
-import { uid } from 'uid';
-import useLocalStorageState from 'use-local-storage-state';
-import List from './components/list/List';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { Form } from "./components/form/Form";
+import Weather from "./components/weather/Weather";
+import { uid } from "uid";
+import useLocalStorageState from "use-local-storage-state";
+import List from "./components/list/List";
 
 function App() {
-  const [activities, setActivities] = useLocalStorageState('activities', {
+  const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
   const [weather, setWeather] = useState();
-  const url = 'https://example-apis.vercel.app/api/weather/europe';
+  const [continent, setContinent] = useState("");
+
+  function handleContinentChange(event) {
+    console.log("selected continent", event.target.value);
+    setContinent(event.target.value);
+  }
+
+  const url = `https://example-apis.vercel.app/api/weather/${continent}`;
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
-          console.log('data', data);
+
           setWeather(data);
         } else {
-          console.error('bad response');
+          console.error("bad response");
         }
       } catch (error) {
-        console.error('error');
+        console.error("error");
       }
     }
 
@@ -32,7 +39,7 @@ function App() {
     return () => {
       clearInterval(intervalID);
     };
-  }, []);
+  }, [continent]);
   const isGoodWeather = weather?.isGoodWeather;
 
   const goodWeatherActivities = activities.filter(
@@ -53,6 +60,14 @@ function App() {
     <>
       <h1>main app</h1>
       <Form onAddActivity={handleAddActivity} />
+      <form>
+        <select value={continent} onChange={handleContinentChange}>
+          <option value="europe">Europe</option>
+          <option value="arctic">Arctic</option>
+          <option value="sahara">Sahara</option>
+          <option value="rainforest">Rainforest</option>
+        </select>
+      </form>
       <Weather weather={weather} />
       <List
         isGoodWeather={isGoodWeather}
