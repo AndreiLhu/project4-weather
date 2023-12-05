@@ -5,8 +5,6 @@ export const Form = ({ onAddActivity }) => {
     isForGoodWeather: false,
   });
 
-  // const inputFocus = useRef(null);
-
   const handleNameChange = (e) => {
     setFormData({ ...formData, name: e.target.value });
   };
@@ -18,15 +16,13 @@ export const Form = ({ onAddActivity }) => {
     console.log("target", e.target);
     console.log("form", formData);
 
-    onAddActivity({ formData });
-
-    // if (inputFocus.current) {
-    //   inputFocus.current.focus();
-    // }
-    // setFormData({
-    //   name: "",
-    //   isForGoodWeather: false,
-    // })
+    // onAddActivity({ formData });
+    const form = e.target;
+    let name = form.elements.inputName.value;
+    console.log("name", name);
+    form.reset();
+    name.reset();
+    form.elements.inputName.focus();
   };
 
   return (
@@ -37,6 +33,7 @@ export const Form = ({ onAddActivity }) => {
         <input
           type="text"
           id="inputName"
+          name="inputName"
           placeholder="enter your activity"
           value={formData.name}
           onChange={handleNameChange}
