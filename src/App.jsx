@@ -14,10 +14,10 @@ function App() {
   const [continent, setContinent] = useState("");
 
   function handleContinentChange(event) {
-    console.log("continent", event.target.value);
+    console.log("selected continent", event.target.value);
     setContinent(event.target.value);
   }
-  console.log(continent);
+
   const url = `https://example-apis.vercel.app/api/weather/${continent}`;
   useEffect(() => {
     async function fetchData() {
@@ -25,7 +25,7 @@ function App() {
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
-          console.log("data", data);
+
           setWeather(data);
         } else {
           console.error("bad response");
