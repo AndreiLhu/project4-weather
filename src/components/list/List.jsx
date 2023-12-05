@@ -16,7 +16,7 @@ export default function List({ activities, isGoodWeather, onDeleteActivity }) {
       <ul className="list__section">
         {activities.map((activity) => (
           <li className="list__item" key={activity.id}>
-            {activity.name}
+            {activity.inputName}
             <button
               onClick={() => onDeleteActivity(activity.id)}
               type="button"
