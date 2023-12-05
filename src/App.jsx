@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Form } from './components/form/Form';
-import { useLocalStorageState } from 'use-local-storage-state';
 import Weather from './components/weather/Weather';
 import { uid } from 'uid';
+import useLocalStorageState from 'use-local-storage-state';
+import List from './components/list/List';
 
 function App() {
   const [activities, setActivities] = useLocalStorageState('activities', {
@@ -32,10 +33,17 @@ function App() {
       clearInterval(intervalID);
     };
   }, []);
+  // const isGoodWeather = weather?.isGoodWeather;
+  // const goodWeatherActivities = activities.filter(
+  //   (activity) => activity.isForGoodWeather === true
+  // );
+  // const badWeatherActivities = activities.filter(
+  //   (activity) => activity.isForGoodWeather === false
+  // );
 
-  // function handleDeleteActivity(id) {
-  //   setActivities(activities.filter((activity) => activity.id !== id));
-  // }
+  function handleDeleteActivity(id) {
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
   function handleAddActivity(newActivity) {
     setActivities([...activities, { id: uid(), ...newActivity }]);
   }
@@ -46,6 +54,13 @@ function App() {
       <h1>main app</h1>
       <Form onAddActivity={handleAddActivity} />
       <Weather weather={weather} />
+      {/* <List
+        isGoodWeather={isGoodWeather}
+        activities={
+          isGoodWeather ? goodWeatherActivities : badWeatherActivities
+        }
+        onDeleteActivity={handleDeleteActivity}
+      /> */}
     </>
   );
 }
