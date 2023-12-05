@@ -1,28 +1,33 @@
-import { useState } from 'react';
+
 export const Form = ({ onAddActivity }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    isForGoodWeather: false,
-  });
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   isForGoodWeather: false,
+  // });
 
-  const handleNameChange = (e) => {
-    setFormData({ ...formData, name: e.target.value });
-  };
-  const handleWeatherChange = (e) => {
-    setFormData({ ...formData, isForGoodWeather: e.target.checked });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('target', e.target);
-    console.log('form', formData);
+  // const handleNameChange = (e) => {
+  //   setFormData({ ...formData, name: e.target.value });
+  // };
+  // const handleWeatherChange = (e) => {
+  //   setFormData({ ...formData, isForGoodWeather: e.target.checked });
+  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    // onAddActivity({ formData });
-    const form = e.target;
-    let name = form.elements.inputName.value;
-    console.log('name', name);
-    form.reset();
-    name.reset();
-    form.elements.inputName.focus();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    // data.isForGoodWeather= event.target.isForGoodWeather.checked === true
+    onAddActivity(data);
+    console.log("form", formData);
+    console.log("data", data);
+    event.target.reset();
+    event.target.inputName.focus();
+    // let name = form.elements.inputName.value;
+    // console.log("name", name);
+
+    // name.reset();
+    // form.elements.inputName.focus();
+>>>>>>> bb64e1dd9c8c5c48c28a865a8a8d759ddfe93182
   };
 
   return (
@@ -35,18 +40,19 @@ export const Form = ({ onAddActivity }) => {
           id="inputName"
           name="inputName"
           placeholder="enter your activity"
-          value={formData.name}
-          onChange={handleNameChange}
+          required
+          // value={formData.name}
+          // onChange={handleNameChange}
           // ref={inputFocus}
         ></input>
         <label htmlFor="inputGoodWeather">Good-weather activity:</label>
         <input
           type="checkbox"
           id="inputGoodWeather"
-          onChange={handleWeatherChange}
-          checked={formData.isForGoodWeather}
+          // onChange={handleWeatherChange}
+          // checked={formData.isForGoodWeather}
         ></input>
-        <input type="submit" value="add Activity"></input>
+        <button type="submit">add Activity</button>
       </form>
     </>
   );
