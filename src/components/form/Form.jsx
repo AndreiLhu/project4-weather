@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 export const Form = ({ onAddActivity }) => {
   const [formData, setFormData] = useState({
-    name: "",
+    name: '',
     isForGoodWeather: false,
   });
 
@@ -13,13 +13,13 @@ export const Form = ({ onAddActivity }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("target", e.target);
-    console.log("form", formData);
+    console.log('target', e.target);
+    console.log('form', formData);
 
     // onAddActivity({ formData });
     const form = e.target;
     let name = form.elements.inputName.value;
-    console.log("name", name);
+    console.log('name', name);
     form.reset();
     name.reset();
     form.elements.inputName.focus();
