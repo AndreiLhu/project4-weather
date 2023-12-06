@@ -63,8 +63,13 @@ function App() {
     >
       <h1>Weather App</h1>
       <Form onAddActivity={handleAddActivity} />
-      <form>
-        <select value={continent} onChange={handleContinentChange}>
+      <form className="form-weather">
+        <h4 className="location-weather"> Choose a location:</h4>
+        <select
+          value={continent}
+          onChange={handleContinentChange}
+          className="continent-input"
+        >
           <option value="europe">Europe</option>
           <option value="arctic">Arctic</option>
           <option value="sahara">Sahara</option>
