@@ -1,10 +1,16 @@
 .form {
   margin-top: 20px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .form h4 {
-  font-size: 18px;
+  font-size: 22px;
   color: #555;
+  margin-top: 5px;
+}
+.inputName {
+  font-size: 22px;
 }
 
 label {
@@ -12,10 +18,16 @@ label {
   margin-top: 10px;
 }
 input {
+  padding: 12px;
   width: 100%;
-  padding: 8px;
   margin-top: 5px;
   box-sizing: border-box;
+}
+.inputGoodWeather {
+  font-size: 22px;
+}
+.input-checkbox {
+  height: 20px;
 }
 
 button {
@@ -27,6 +39,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 button:hover {

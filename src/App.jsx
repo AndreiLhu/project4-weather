@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import { Form } from "./components/form/Form";
-import Weather from "./components/weather/Weather";
-import { uid } from "uid";
-import useLocalStorageState from "use-local-storage-state";
-import List from "./components/list/List";
+import { useEffect, useState } from 'react';
+import './App.css';
+import { Form } from './components/form/Form';
+import Weather from './components/weather/Weather';
+import { uid } from 'uid';
+import useLocalStorageState from 'use-local-storage-state';
+import List from './components/list/List';
 
 function App() {
-  const [activities, setActivities] = useLocalStorageState("activities", {
+  const [activities, setActivities] = useLocalStorageState('activities', {
     defaultValue: [],
   });
   const [weather, setWeather] = useState();
-  const [continent, setContinent] = useState("");
+  const [continent, setContinent] = useState('');
 
   function handleContinentChange(event) {
-    console.log("selected continent", event.target.value);
+    console.log('selected continent', event.target.value);
     setContinent(event.target.value);
   }
 
@@ -28,10 +28,10 @@ function App() {
 
           setWeather(data);
         } else {
-          console.error("bad response");
+          console.error('bad response');
         }
       } catch (error) {
-        console.error("error");
+        console.error('error');
       }
     }
 
@@ -39,7 +39,7 @@ function App() {
     return () => {
       clearInterval(intervalID);
     };
-  }, [continent]);
+  }, [url]);
   const isGoodWeather = weather?.isGoodWeather;
 
   const goodWeatherActivities = activities.filter(
@@ -57,7 +57,10 @@ function App() {
   }
 
   return (
-    <div className="weather-container">
+    <div
+      id="weather-container"
+      className={isGoodWeather ? 'good-weather' : 'bad-weather'}
+    >
       <h1>Weather App</h1>
       <Form onAddActivity={handleAddActivity} />
       <form>

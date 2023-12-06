@@ -17,7 +17,9 @@ export const Form = ({ onAddActivity }) => {
     <>
       <form className="form" onSubmit={handleSubmit}>
         <h4>Add new Activity:</h4>
-        <label htmlFor="inputName">Name:</label>
+        <label htmlFor="inputName" className="inputName">
+          Name:
+        </label>
         <input
           type="text"
           id="inputName"
@@ -26,8 +28,11 @@ export const Form = ({ onAddActivity }) => {
           placeholder="enter your activity"
           required
         ></input>
-        <label htmlFor="inputGoodWeather">Good-weather activity:</label>
+        <label htmlFor="inputGoodWeather" className="inputGoodWeather">
+          Good-weather activity:
+        </label>
         <input
+          className="input-checkbox"
           type="checkbox"
           id="inputGoodWeather"
           name="inputGoodWeather"
