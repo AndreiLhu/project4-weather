@@ -17,3 +17,10 @@
   font-size: 24px;
   color: #333;
 }
+
+.bad-weather {
+  cursor: url(`../public/rain_cursor.svg`), auto;
+}
+.good-weather {
+  cursor: url(`../public/sun_cursor.svg`), auto;
+}
