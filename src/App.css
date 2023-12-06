@@ -18,12 +18,14 @@
   font-size: 44px;
   color: #333;
 }
+
 .good-weather {
   background-image: linear-gradient(
     111.4deg,
     rgba(238, 113, 113, 1) 1%,
     rgba(246, 215, 148, 1) 58%
   );
+  cursor: url(`../public/sun_cursor.svg`), auto;
 }
 .bad-weather {
   background-image: radial-gradient(
@@ -31,4 +33,5 @@
     rgba(97, 186, 255, 1) 0%,
     rgba(166, 239, 253, 1) 90.1%
   );
+  cursor: url(`../public/rain_cursor.svg`), auto;
 }
