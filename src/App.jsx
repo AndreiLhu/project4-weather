@@ -53,7 +53,7 @@ function App() {
     setActivities(activities.filter((activity) => activity.id !== id));
   }
   function handleAddActivity(newActivity) {
-    setActivities([...activities, { id: uid(), ...newActivity }]);
+    setActivities([{ id: uid(), ...newActivity }, ...activities]);
   }
 
   return (
